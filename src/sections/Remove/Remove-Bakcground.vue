@@ -29,13 +29,13 @@
           <div class="space-y-2">
             <h2 class="text-lg font-semibold text-gray-700">Original Image</h2>
             <div class="relative aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-              <img :src="originalImage || ''" alt="Original" class="object-contain w-full h-full" />
+              <img :src="originalImage || ''" alt="Original" class="object-contain w-full h-full" fetchpriority="high" loading="lazy" />
             </div>
           </div>
           <div class="space-y-2">
             <h2 class="text-lg font-semibold text-gray-700">Processed Image</h2>
             <div class="relative aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-              <img :src="processedImage || ''" alt="Processed" class="object-contain w-full h-full" />
+              <img :src="processedImage || ''" alt="Processed" class="object-contain w-full h-full" fetchpriority="high" loading="lazy" />
             </div>
           </div>
         </div>
