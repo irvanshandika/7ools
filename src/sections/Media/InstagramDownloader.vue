@@ -13,7 +13,6 @@
       </form>
 
       <div v-if="loading" class="text-center">
-        <LoaderIcon class="animate-spin h-8 w-8 text-blue-600 mx-auto" />
         <p class="mt-2 text-gray-600">Processing your request...</p>
       </div>
 
