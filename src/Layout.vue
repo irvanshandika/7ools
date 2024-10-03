@@ -20,4 +20,5 @@ useSeoMeta({
 
 <template>
   <slot />
+  <noscript><img height="0" width="0" style="display: none" src="https://www.facebook.com/tr?id=809065191165004&ev=PageView&noscript=1" /></noscript>
 </template>

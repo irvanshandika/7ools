@@ -2,7 +2,20 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  plugins: ["~/plugins/flowbite.client.ts", "~/plugins/hotjar.client.ts"],
+  plugins: [
+    {
+      src: "~/plugins/flowbite.client.ts",
+      mode: "client",
+    },
+    {
+      src: "~/plugins/hotjar.client.ts",
+      mode: "client",
+    },
+    {
+      src: "~/plugins/facebookPixel.client.ts",
+      mode: "client",
+    },
+  ],
   css: ["~/src/css/style.css"],
   postcss: {
     plugins: {
