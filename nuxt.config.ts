@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  plugins: ["~/plugins/flowbite.client.ts", '~/plugins/hotjar.client.ts'],
+  plugins: ["~/plugins/flowbite.client.ts", "~/plugins/hotjar.client.ts"],
   css: ["~/src/css/style.css"],
   postcss: {
     plugins: {
@@ -13,7 +13,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY,
-      hotjarId: process.env.HOTJAR_ID || ''
     },
   },
 });

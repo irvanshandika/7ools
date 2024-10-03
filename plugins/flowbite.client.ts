@@ -1,4 +1,3 @@
-// plugins/flowbite.client.ts
 import { defineNuxtPlugin } from "#app";
 
 export default defineNuxtPlugin((nuxtApp) => {

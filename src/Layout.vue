@@ -19,6 +19,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <Hotjar />
   <slot />
 </template>
