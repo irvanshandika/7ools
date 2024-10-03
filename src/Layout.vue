@@ -1,6 +1,4 @@
 <script setup>
-import Hotjar from "~/src/components/Hotjar.vue";
-
 useSeoMeta({
   description: "7ools: Perangkat Produktivitas All-in-One untuk Profesional Modern",
   categories: ["productivity", "tools", "all-in-one", "modern", "professional", "7ools"],
