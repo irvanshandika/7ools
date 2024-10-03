@@ -10,7 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@hotjar/browser": "^1.0.9",
     "flowbite": "^2.5.2",
     "lucide-vue-next": "^0.447.0",
     "nuxt": "^3.13.2",
