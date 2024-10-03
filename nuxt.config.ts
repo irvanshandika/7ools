@@ -10,4 +10,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY,
+    },
+  },
 });

@@ -2,7 +2,7 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" fetchpriority="high" loading="lazy" />
+        <BoltIcon class="w-8 h-8 text-indigo-600 dark:text-white" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">7ools</span>
       </a>
       <button
@@ -55,6 +55,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import DropdownContents from "./DropdownContents.vue";
+import { BoltIcon } from "lucide-vue-next";
 
 const route = useRoute();
 
