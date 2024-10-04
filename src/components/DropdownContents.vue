@@ -30,14 +30,10 @@ import { Instagram, YoutubeIcon } from "lucide-vue-next";
         <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
             <li>
-              <a href="/media-downloader/instagram" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                <Instagram class="w-5 h-5 inline-block" /> Instagram
-              </a>
+              <a href="/media-downloader/instagram" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> <Instagram class="w-5 h-5 inline-block" /> Instagram </a>
             </li>
             <li>
-              <a href="/media-downloader/youtube" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                <YoutubeIcon class="w-5 h-5 inline-block" /> Youtube
-              </a>
+              <a href="/media-downloader/youtube" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> <YoutubeIcon class="w-5 h-5 inline-block" /> Youtube </a>
             </li>
           </ul>
         </div>
