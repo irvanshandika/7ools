@@ -1,11 +1,11 @@
 <template>
-  <section id="features" class="py-20">
+  <section id="features" class="py-20 bg-gray-100">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">Our Tools</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Powerful Features</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div v-for="(feature, index) in features" :key="index" class="bg-white p-6 rounded-lg shadow-md">
-          <component :is="feature.icon" class="h-12 w-12 text-blue-500 mb-4" />
-          <h3 class="text-xl font-semibold mb-2">{{ feature.title }}</h3>
+        <div v-for="feature in features" :key="feature.title" class="bg-white p-6 rounded-lg shadow-md text-center">
+          <component :is="feature.icon" class="h-12 w-12 mx-auto mb-4 text-blue-500" />
+          <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ feature.title }}</h3>
           <p class="text-gray-600">{{ feature.description }}</p>
         </div>
       </div>
@@ -14,23 +14,23 @@
 </template>
 
 <script setup lang="ts">
-import { MenuIcon, ClockIcon, ChartBarIcon, BoltIcon } from "lucide-vue-next";
+import { ImageIcon, ClockIcon, TrendingUpIcon } from "lucide-vue-next";
 
 const features = [
   {
-    icon: BoltIcon,
-    title: "Powerful Tools",
-    description: "Access a wide range of tools designed to streamline your work process.",
+    icon: ImageIcon,
+    title: "Background Remover",
+    description: "Easily remove backgrounds from your images with our AI-powered tool.",
   },
   {
     icon: ClockIcon,
-    title: "Time-Saving",
-    description: "Reduce time spent on repetitive tasks and focus on what matters most.",
+    title: "Time Tracker",
+    description: "Boost productivity by tracking your time spent on various tasks and projects.",
   },
   {
-    icon: ChartBarIcon,
-    title: "Increased Productivity",
-    description: "Boost your efficiency with our intuitive and user-friendly tools.",
+    icon: TrendingUpIcon,
+    title: "Analytics Dashboard",
+    description: "Gain insights into your work patterns with our comprehensive analytics.",
   },
 ];
 </script>

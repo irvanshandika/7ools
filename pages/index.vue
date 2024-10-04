@@ -2,7 +2,7 @@
 import Navbar from "~/src/components/Navbar.vue";
 import Hero from "~/src/sections/HomeSection/Hero.vue";
 import Features from "~/src/sections/HomeSection/Features.vue";
-import CTA from "~/src/sections/HomeSection/CTA.vue";
+import Contact from "~/src/sections/HomeSection/Contact.vue";
 import Footer from "~/src/components/Footer.vue";
 import Layout from "~/src/Layout.vue";
 
@@ -18,7 +18,7 @@ useSeoMeta({
       <Navbar />
       <Hero />
       <Features />
-      <CTA />
+      <Contact />
       <Footer />
     </div>
   </Layout>

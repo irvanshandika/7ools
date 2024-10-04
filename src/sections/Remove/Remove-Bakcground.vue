@@ -27,7 +27,7 @@
             </div>
             <div>
               <h2 class="text-xl font-semibold mb-4 text-gray-700">Processed Image</h2>
-              <img :src="processedImage || '/placeholder.svg?height=256&width=256'" alt="Processed" class="w-full h-64 object-cover rounded-lg shadow-md" />
+              <img :src="processedImage || 'https://example.com'" alt="Processed" class="w-full h-64 object-cover rounded-lg shadow-md" />
             </div>
           </div>
 
