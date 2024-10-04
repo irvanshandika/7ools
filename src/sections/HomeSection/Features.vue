@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ImageIcon, ClockIcon, TrendingUpIcon } from "lucide-vue-next";
+import { ImageIcon, ClockIcon, ClapperboardIcon } from "lucide-vue-next";
 
 const features = [
   {
@@ -28,9 +28,9 @@ const features = [
     description: "Boost productivity by tracking your time spent on various tasks and projects.",
   },
   {
-    icon: TrendingUpIcon,
-    title: "Analytics Dashboard",
-    description: "Gain insights into your work patterns with our comprehensive analytics.",
+    icon: ClapperboardIcon,
+    title: "Media Downloader",
+    description: "Download media from popular platforms like Instagram and YouTube with ease.",
   },
 ];
 </script>

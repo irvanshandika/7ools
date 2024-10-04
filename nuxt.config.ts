@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   plugins: [
     {
-      src: "~/plugins/flowbite.client.ts",
+      src: "~/plugins/preline.client.ts",
       mode: "client",
     },
     {

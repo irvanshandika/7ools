@@ -6,7 +6,7 @@ export default {
     "./[plugins]/**/*.{js,ts}",
     "./pages/**/*.vue",
     "./src/**/*.{js,vue,ts}",
-    "./node_modules/flowbite/**/*.{js,ts}",
+    './node_modules/preline/preline.js',
   ],
   theme: {
     extend: {
@@ -15,5 +15,7 @@ export default {
       },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [
+    require('preline/plugin'),
+  ],
 };
