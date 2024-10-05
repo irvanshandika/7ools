@@ -26,7 +26,7 @@
           <div class="flex justify-between items-center">
             <div class="text-gray-600">
               <ClockIcon class="inline-block h-5 w-5 mr-1" />
-              <span>2 hours</span>
+              <span>Idk When</span>
             </div>
             <div class="text-gray-600">
               <CalendarIcon class="inline-block h-5 w-5 mr-1" />
