@@ -70,6 +70,16 @@
             ]">
             About
           </NuxtLink>
+          <NuxtLink
+            to="/gemini"
+            :class="[
+              'block py-2 px-3 rounded md:p-0',
+              isActive('/gemini')
+                ? 'relative py-2.5 duration-300 ease-linear text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-100 after:bg-indigo-600'
+                : 'relative py-2.5 duration-300 ease-linear hover:text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-0 hover:after:scale-x-100 after:bg-indigo-600',
+            ]">
+            Gemini AI
+          </NuxtLink>
           <DropdownContents />
         </div>
       </div>
