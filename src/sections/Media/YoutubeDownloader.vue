@@ -1,82 +1,71 @@
 <template>
-  <div class="min-h-screen bg-blue-50 flex flex-col items-center justify-center py-10">
-    <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
-      <h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">YouTube Video Downloader</h1>
+  <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">YouTube Video Downloader</h2>
+        <form @submit.prevent="fetchVideoInfo" class="mb-4">
+          <input
+            v-model="youtubeUrl"
+            type="text"
+            placeholder="Enter YouTube URL"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <button
+            type="submit"
+            class="mt-3 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Get Video
+          </button>
+        </form>
 
-      <div class="flex flex-col gap-4">
-        <input v-model="youtubeUrl" type="text" placeholder="Enter YouTube Video URL" class="border-2 border-blue-300 rounded-md p-3 focus:outline-none focus:ring focus:ring-blue-300 transition" />
-        <button @click="fetchVideo" class="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">Download</button>
-      </div>
-
-      <div v-if="videoData" class="mt-6">
-        <h2 class="text-xl font-semibold text-blue-600">{{ videoData.title }}</h2>
-        <p class="text-sm text-gray-600">
-          Uploaded by: <a :href="videoData.uploader_url" target="_blank" class="text-blue-500 underline">{{ videoData.uploader }}</a>
-        </p>
-        <video v-if="videoData.videoUrl" controls class="mt-4 w-full rounded-md shadow-lg">
-          <source :src="videoData.videoUrl" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div class="mt-4">
-          <a :href="videoData.videoUrl" download class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition"> Download Video </a>
+        <div v-if="videoInfo" class="mt-6">
+          <h3 class="text-xl font-semibold mb-2">{{ videoInfo.title }}</h3>
+          <p class="text-gray-600 mb-2">Uploader: {{ videoInfo.uploader }}</p>
+          <p class="text-gray-600 mb-4">Upload Date: {{ formatDate(videoInfo.upload_date) }}</p>
+          <a
+            :href="videoInfo.videoUrl"
+            download
+            class="inline-block bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          >
+            Download Video
+          </a>
         </div>
-      </div>
 
-      <div v-if="errorMessage" class="text-red-500 mt-5 text-center">
-        {{ errorMessage }}
+        <div v-if="error" class="mt-4 text-red-500">
+          {{ error }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from "vue";
+<script setup>
+import { ref } from 'vue';
 
-export default {
-  setup() {
-    const youtubeUrl = ref<string>("");
-    const videoData = ref<any>(null);
-    const errorMessage = ref<string>("");
+const youtubeUrl = ref('');
+const videoInfo = ref(null);
+const error = ref('');
 
-    const fetchVideo = async () => {
-      if (!youtubeUrl.value) {
-        errorMessage.value = "Please enter a valid YouTube URL.";
-        return;
-      }
+const fetchVideoInfo = async () => {
+  try {
+    error.value = '';
+    videoInfo.value = null;
+    const response = await fetch(`/api/youtube?url=${encodeURIComponent(youtubeUrl.value)}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch video information');
+    }
+    videoInfo.value = await response.json();
+  } catch (err) {
+    error.value = 'Failed to fetch video information. Please try again.';
+    console.error(err);
+  }
+};
 
-      errorMessage.value = "";
-      videoData.value = null;
-
-      try {
-        const response = await fetch(`https://mr-apis.com/api/downloader/ytbv?url=${encodeURIComponent(youtubeUrl.value)}`);
-        const data = await response.json();
-
-        if (data.status === "success") {
-          videoData.value = data;
-        } else {
-          errorMessage.value = "Failed to fetch video. Please try again.";
-        }
-      } catch (error) {
-        errorMessage.value = "An error occurred while fetching the video.";
-      }
-    };
-
-    return {
-      youtubeUrl,
-      videoData,
-      errorMessage,
-      fetchVideo,
-    };
-  },
+const formatDate = (dateString) => {
+  const year = dateString.slice(0, 4);
+  const month = dateString.slice(4, 6);
+  const day = dateString.slice(6, 8);
+  return `${year}-${month}-${day}`;
 };
 </script>
-
-<style scoped>
-body {
-  font-family: "Inter", sans-serif;
-}
-
-.container {
-  max-width: 800px;
-}
-</style>

@@ -13,11 +13,14 @@ useSeoMeta({
 </script>
 <template>
   <Layout>
-    <Navbar />
-    <div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100">
-      <Mission />
-      <InfoCards />
-      <Values />
+    <div class="min-h-screen">
+      <Navbar />
+      <main class="container mx-auto pb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-blue-600 mb-12">About 7ools</h1>
+        <Mission />
+        <InfoCards />
+        <Values />
+      </main>
       <Footer />
     </div>
   </Layout>

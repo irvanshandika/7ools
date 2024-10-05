@@ -5,7 +5,7 @@
         <div class="flex justify-center mb-6">
           <ServerCrashIcon class="h-24 w-24 text-red-500" />
         </div>
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">505 - Internal Server Error</h1>
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">500 - Internal Server Error</h1>
         <p class="text-center text-gray-600 mb-8">Oops! Something went wrong on our end. We're working to fix the issue. Please try again later.</p>
         <div class="flex flex-col space-y-4">
           <button @click="reloadPage" class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300 text-center">Reload Page</button>
@@ -26,8 +26,8 @@ import type { PropType } from "vue";
 import type { NuxtError } from "#app";
 
 useSeoMeta({
-  title: "505 Internal Server Error | 7ools",
-  ogTitle: "505 Internal Server Error | 7ools",
+  title: "500 Internal Server Error | 7ools",
+  ogTitle: "500 Internal Server Error | 7ools",
 });
 
 defineProps({

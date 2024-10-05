@@ -15,13 +15,11 @@
           </a>
         </div>
       </div>
-      <div class="mt-8 text-center text-gray-400 text-sm">
-        &copy; {{ new Date().getFullYear() }} 7ools. All rights reserved.
-      </div>
+      <div class="mt-8 text-center text-gray-400 text-sm">&copy; {{ new Date().getFullYear() }} 7ools. All rights reserved.</div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import { TwitterIcon, FacebookIcon, InstagramIcon } from 'lucide-vue-next'
+import { TwitterIcon, FacebookIcon, InstagramIcon } from "lucide-vue-next";
 </script>

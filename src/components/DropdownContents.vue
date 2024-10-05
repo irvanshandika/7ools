@@ -1,5 +1,5 @@
 <script setup>
-import { Instagram, YoutubeIcon } from "lucide-vue-next";
+import { Instagram, YoutubeIcon, FacebookIcon } from "lucide-vue-next";
 </script>
 <template>
   <div class="hs-dropdown relative [--gpu-acceleration:false] inline-flex">
@@ -32,6 +32,10 @@ import { Instagram, YoutubeIcon } from "lucide-vue-next";
           <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/media-downloader/youtube">
             <YoutubeIcon class="size-5" />
             Youtube
+          </a>
+          <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/media-downloader/facebook">
+            <FacebookIcon class="size-5" />
+            Facebook
           </a>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { defineEventHandler, getQuery, createError } from "h3";
+import { $fetch } from "ofetch";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
@@ -7,46 +7,21 @@ export default defineEventHandler(async (event) => {
   if (!url) {
     throw createError({
       statusCode: 400,
-      statusMessage: "URL is required",
+      message: "URL parameter is required",
     });
   }
 
-  const encodedUrl = encodeURIComponent(url);
-  const apiUrl = `https://mr-apis.com/api/downloader/ytbv?url=${encodedUrl}`;
-
   try {
-    const response = await fetch(apiUrl, {
+    const response = await $fetch("https://mr-apis.com/api/downloader/ytbv", {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
+      params: { url },
     });
-
-    if (!response.ok) {
-      throw createError({
-        statusCode: response.status,
-        statusMessage: `API responded with status ${response.status}`,
-      });
-    }
-
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: "API did not return JSON",
-      });
-    }
-
-    const data = await response.json();
-    return data;
+    return response;
   } catch (error) {
-    console.error("Error fetching YouTube video:", error);
-    if (error instanceof Error && "statusCode" in error) {
-      throw error; // Re-throw H3 errors
-    }
+    console.error("Error fetching YouTube data:", error);
     throw createError({
       statusCode: 500,
-      statusMessage: "Failed to fetch video data",
+      message: "Failed to fetch video information",
     });
   }
 });

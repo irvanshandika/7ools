@@ -1,19 +1,19 @@
-<script setup lang="ts">
+<script setup>
 import Navbar from "~/src/components/Navbar.vue";
 import Layout from "~/src/Layout.vue";
-import YoutubeDownloader from "~/src/sections/Media/YoutubeDownloader.vue";
+import FacebookDownloader from "~/src/sections/Media/FacebookDownloader.vue";
 import Footer from "~/src/components/Footer.vue";
 
 useSeoMeta({
-  title: "Youtube Downloader | 7ools",
-  ogTitle: "Youtube Downloader | 7ools",
+  title: "Facebook Downloader | 7ools",
+  ogTitle: "Facebook Downloader | 7ools",
 });
 </script>
 <template>
   <Layout>
     <Navbar />
     <div class="container mx-auto px-4 min-h-screen">
-      <YoutubeDownloader />
+      <FacebookDownloader />
     </div>
     <Footer />
   </Layout>
