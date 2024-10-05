@@ -1,7 +1,8 @@
 <script setup>
 useSeoMeta({
   description: "7ools: Perangkat Produktivitas All-in-One untuk Profesional Modern",
-  categories: ["productivity", "tools", "all-in-one", "modern", "professional", "7ools"],
+  keywords: ["productivity", "tools", "all-in-one", "modern", "professional", "7ools"],
+  // Open Graph
   ogDescription: "7ools: Perangkat Produktivitas All-in-One untuk Profesional Modern",
   ogType: "website",
   ogUrl: "https://7ools.vercel.app",
