@@ -34,7 +34,7 @@
       <div class="flex items-center bg-white rounded-full">
         <input v-model="userInput" type="text" placeholder="Type a message" class="flex-1 py-2 px-4 rounded-full focus:outline-none" />
         <button type="submit" class="bg-green-500 text-white rounded-full p-2 mx-1 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-          <SendIcon class="w-20" />
+          <img src="https://api.iconify.design/mingcute:send-plane-fill.svg" alt="Icon Send" class="w-6 h-6" />
         </button>
       </div>
     </form>
@@ -45,7 +45,6 @@
 import { defineComponent, ref, onMounted, nextTick } from "vue";
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 import MarkdownIt from "markdown-it";
-import { SendIcon, User2 } from "lucide-vue-next";
 
 interface Message {
   content: string;
