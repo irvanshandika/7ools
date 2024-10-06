@@ -19,6 +19,10 @@ export default defineNuxtConfig({
       src: "~/plugins/gtm.client.ts",
       mode: "client",
     },
+    {
+      src: "~/plugins/cookie-script.client.ts",
+      mode: "client",
+    },
   ],
   css: ["~/src/css/style.css"],
   postcss: {
