@@ -1,7 +1,5 @@
 <script setup>
-import Navbar from "~/src/components/Navbar.vue";
-import GPT from "~/src/components/ChatBot.vue";
-import Footer from "~/src/components/Footer.vue";
+import Gemini from "~/src/components/ChatBot.vue";
 import Layout from "~/src/Layout.vue";
 
 useSeoMeta({
@@ -12,8 +10,6 @@ useSeoMeta({
 
 <template>
   <Layout>
-    <Navbar />
-    <GPT />
-    <Footer />
+    <Gemini />
   </Layout>
 </template>

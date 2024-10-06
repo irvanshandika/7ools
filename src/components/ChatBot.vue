@@ -2,6 +2,12 @@
   <div class="flex flex-col h-screen bg-gray-100">
     <!-- Chat header -->
     <div class="bg-green-600 text-white p-4 flex items-center">
+      <a href="/" class="w-10 h-10 rounded-full mr-1 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white transition-colors duration-300 ease-in-out" width="32" height="32" viewBox="0 0 24 24">
+          <path fill="currentColor" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z" />
+        </svg>
+      </a>
+
       <div class="w-10 h-10 rounded-full bg-white mr-3 flex items-center justify-center">
         <img src="/bard.svg" alt="Gemini" class="w-6 h-6" />
       </div>
@@ -34,7 +40,9 @@
       <div class="flex items-center bg-white rounded-full">
         <input v-model="userInput" type="text" placeholder="Type a message" class="flex-1 py-2 px-4 rounded-full focus:outline-none" />
         <button type="submit" class="bg-green-500 text-white rounded-full p-2 mx-1 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-          <img src="https://api.iconify.design/mingcute:send-plane-fill.svg" alt="Icon Send" class="w-6 h-6" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="w-6 h-6 text-white transition-colors duration-300 ease-in-out" viewBox="0 0 32 32">
+            <path fill="currentColor" d="M27.71 4.29a1 1 0 0 0-1.05-.23l-22 8a1 1 0 0 0 0 1.87l8.59 3.43L19.59 11L21 12.41l-6.37 6.37l3.44 8.59A1 1 0 0 0 19 28a1 1 0 0 0 .92-.66l8-22a1 1 0 0 0-.21-1.05" />
+          </svg>
         </button>
       </div>
     </form>
