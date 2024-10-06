@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       src: "~/plugins/facebookPixel.client.ts",
       mode: "client",
     },
+    {
+      src: "~/plugins/gtm.client.ts",
+      mode: "client",
+    },
   ],
   css: ["~/src/css/style.css"],
   postcss: {
