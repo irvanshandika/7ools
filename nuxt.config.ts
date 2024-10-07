@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     public: {
       REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY,
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+      CONVERT_API_TOKEN: process.env.CONVERT_API_TOKEN
     },
   },
 });
