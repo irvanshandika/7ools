@@ -1,50 +1,47 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-12 px-4">
-    <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
-      <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">Convert PDF to DOCX</h1>
+  <div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="p-8">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Convert PDF to DOCX</h1>
 
-      <div
-        class="border-3 border-dashed border-blue-300 rounded-2xl p-8 mb-6 text-center cursor-pointer hover:border-blue-400 transition-colors duration-300"
-        @dragover.prevent
-        @drop.prevent="handleFileDrop"
-        @click="$refs.fileInput.click()">
-        <input type="file" ref="fileInput" @change="handleFileSelect" accept=".pdf" class="hidden" />
-        <FileIcon class="h-16 w-16 mx-auto mb-4 text-blue-500" />
-        <p class="text-lg text-gray-600">
-          Drag and drop a PDF file here or
-          <span class="text-blue-500 underline">click to select</span>
-        </p>
-      </div>
-
-      <div v-if="selectedFile" class="mb-6">
-        <div class="flex items-center justify-between bg-blue-50 rounded-lg p-4">
-          <div class="flex items-center">
-            <FileTextIcon class="h-6 w-6 text-blue-500 mr-2" />
-            <span class="text-gray-700">{{ selectedFile.name }}</span>
-          </div>
-          <button
-            @click="convertFile"
-            class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-50"
-            :disabled="isConverting">
-            <span v-if="!isConverting">Convert</span>
-            <span v-else class="flex items-center">
-              <LoaderIcon class="animate-spin mr-2 h-5 w-5" />
-              Converting...
-            </span>
-          </button>
+        <div
+          class="border-2 border-dashed border-blue-300 rounded-lg p-8 mb-6 text-center cursor-pointer hover:border-blue-500 transition-colors duration-300"
+          @dragover.prevent
+          @drop.prevent="handleFileDrop"
+          @click="$refs.fileInput.click()">
+          <input type="file" ref="fileInput" @change="handleFileSelect" accept=".pdf" class="hidden" />
+          <UploadCloudIcon class="mx-auto h-12 w-12 text-blue-500 mb-4" />
+          <p class="text-lg text-gray-600">Drag and drop a PDF file here, or click to select</p>
+          <p class="text-sm text-gray-500 mt-2">Supports: PDF</p>
         </div>
-      </div>
 
-      <div v-if="convertedFile" class="mb-6">
-        <div class="flex items-center justify-between bg-green-50 rounded-lg p-4">
-          <div class="flex items-center">
-            <FileTextIcon class="h-6 w-6 text-green-500 mr-2" />
-            <span class="text-gray-700">{{ convertedFile.name }}</span>
+        <div v-if="selectedFile" class="mb-6">
+          <div class="flex items-center justify-between bg-blue-50 p-4 rounded-lg">
+            <div class="flex items-center">
+              <PDF class="lg:h-6 h-14 lg:w-6 w-14 text-blue-500 mr-2" />
+              <span class="text-gray-700 text-sm">{{ selectedFile.name }}</span>
+            </div>
+            <button
+              @click="convertFile"
+              class="bg-blue-500 text-white lg:px-6 px-4 py-2 rounded-full hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+              :disabled="isConverting">
+              <span v-if="!isConverting">Convert</span>
+              <span v-else class="flex items-center">
+                <LoaderIcon class="animate-spin mr-2 h-5 w-5" />
+                Converting...
+              </span>
+            </button>
           </div>
-          <button @click="downloadFile" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2">
-            <DownloadIcon class="h-5 w-5 inline-block mr-1" />
-            Download
-          </button>
+        </div>
+
+        <div v-if="convertedFile" class="mb-6">
+          <div class="flex items-center justify-between bg-green-50 p-4 rounded-lg">
+            <div class="flex items-center">
+              <DOCX class="lg:h-6 h-14 lg:w-6 w-14 text-green-500 mr-2" />
+              <span class="text-gray-700 text-sm">{{ convertedFile.name }}</span>
+            </div>
+            <button @click="downloadFile" class="bg-green-500 text-white lg:px-6 px-4 py-2 rounded-full hover:bg-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Download</button>
+          </div>
         </div>
       </div>
     </div>
@@ -55,7 +52,9 @@
 import { ref } from "vue";
 import ConvertApi from "convertapi-js";
 import { useRuntimeConfig } from "#app";
-import { FileIcon, FileTextIcon, LoaderIcon, DownloadIcon } from "lucide-vue-next";
+import { UploadCloudIcon, FileIcon, LoaderIcon } from "lucide-vue-next";
+import PDF from "~/src/components/icons/PDF.vue";
+import DOCX from "~/src/components/icons/DOCX.vue";
 
 const config = useRuntimeConfig();
 const fileInput = ref<HTMLInputElement | null>(null);

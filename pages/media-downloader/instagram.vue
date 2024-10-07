@@ -12,7 +12,7 @@ useSeoMeta({
 <template>
   <Layout>
     <Navbar />
-    <div class="container mx-auto px-4 min-h-screen">
+    <div>
       <InstagramDownloader />
     </div>
     <Footer />
