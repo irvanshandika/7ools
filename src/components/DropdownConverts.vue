@@ -1,5 +1,6 @@
 <script setup>
 import PDF from "./icons/PDF.vue";
+import DOCX from "./icons/DOCX.vue";
 </script>
 <template>
   <div class="hs-dropdown [--strategy:static] sm:[--strategy:absolute] [--adaptive:none] relative">
@@ -29,6 +30,10 @@ import PDF from "./icons/PDF.vue";
         <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/convert/pdf-docx">
           <PDF class="size-6" />
           PDF to DOCX
+        </a>
+        <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/convert/docx-pdf">
+          <DOCX class="size-6" />
+          DOCX to PDF
         </a>
       </div>
     </div>

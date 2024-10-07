@@ -61,9 +61,36 @@ const isActive = (path) => {
       </div>
       <div id="hs-navbar-example" class="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block" aria-labelledby="hs-navbar-example-collapse">
         <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-          <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="/">Home</a>
-          <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="/about">About</a>
-          <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="/gemini">Gemini AI</a>
+          <NuxtLink
+            :class="[
+              'font-medium',
+              isActive('/')
+                ? 'relative duration-300 ease-linear text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-100 after:bg-indigo-600'
+                : 'relative duration-300 ease-linear hover:text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-0 hover:after:scale-x-100 after:bg-indigo-600',
+            ]"
+            to="/"
+            >Home</NuxtLink
+          >
+          <NuxtLink
+            :class="[
+              'font-medium',
+              isActive('/about')
+                ? 'relative duration-300 ease-linear text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-100 after:bg-indigo-600'
+                : 'relative duration-300 ease-linear hover:text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-0 hover:after:scale-x-100 after:bg-indigo-600',
+            ]"
+            to="/about"
+            >About</NuxtLink
+          >
+          <NuxtLink
+            :class="[
+              'font-medium',
+              isActive('/gemini')
+                ? 'relative duration-300 ease-linear text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-100 after:bg-indigo-600'
+                : 'relative duration-300 ease-linear hover:text-indigo-600 after:absolute after:w-full after:left-0 after:bottom-0 after:h-px after:rounded-md after:origin-left after:ease-linear after:duration-300 after:scale-x-0 hover:after:scale-x-100 after:bg-indigo-600',
+            ]"
+            to="/gemini"
+            >Gemini AI</NuxtLink
+          >
           <DropdownContent />
         </div>
       </div>
