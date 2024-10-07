@@ -12,7 +12,7 @@
           <input type="file" ref="fileInput" @change="handleFileSelect" accept=".docx" class="hidden" />
           <UploadCloudIcon class="mx-auto h-12 w-12 text-blue-500 mb-4" />
           <p class="text-lg text-gray-600">Drag and drop a PDF file here, or click to select</p>
-          <p class="text-sm text-gray-500 mt-2">Supports: PDF</p>
+          <p class="text-sm text-gray-500 mt-2">Supports: DOCX</p>
         </div>
 
         <div v-if="selectedFile" class="mb-6">
