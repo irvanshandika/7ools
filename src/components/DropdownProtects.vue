@@ -27,10 +27,10 @@ import DOCX from "./icons/DOCX.vue";
       aria-orientation="vertical"
       aria-labelledby="hs-navbar-example-dropdown-sub">
       <div class="p-1 space-y-1">
-        <!-- <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/protects/docx">
+        <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/protects/docx">
           <DOCX class="size-6" />
           Protect DOCX
-        </a> -->
+        </a>
         <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/protects/pdf">
           <PDF class="size-6" />
           Protect PDF
