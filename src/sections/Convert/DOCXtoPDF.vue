@@ -54,7 +54,7 @@
 import { ref } from "vue";
 import ConvertApi from "convertapi-js";
 import { useRuntimeConfig } from "#app";
-import { UploadCloudIcon, FileIcon, LoaderIcon } from "lucide-vue-next";
+import { UploadCloudIcon, LoaderIcon } from "lucide-vue-next";
 import PDF from "~/src/components/icons/PDF.vue";
 import DOCX from "~/src/components/icons/DOCX.vue";
 

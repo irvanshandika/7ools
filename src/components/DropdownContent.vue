@@ -1,6 +1,7 @@
 <script setup>
 import DropdownConverts from "./DropdownConverts.vue";
 import DropdownMediaDownloader from "./DropdownMediaDownloader.vue";
+import DropdownProtects from "./DropdownProtects.vue";
 </script>
 <template>
   <div class="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none]">
@@ -35,6 +36,7 @@ import DropdownMediaDownloader from "./DropdownMediaDownloader.vue";
       <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/remove"> Remove Background </a>
       <DropdownMediaDownloader />
       <DropdownConverts />
+      <DropdownProtects />
     </div>
   </div>
 </template>
