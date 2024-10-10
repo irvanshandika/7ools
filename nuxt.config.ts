@@ -31,11 +31,17 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  app: {
+    head: {
+      script: [{ src: "https://www.google.com/recaptcha/api.js", async: true, defer: true }],
+    },
+  },
   runtimeConfig: {
     public: {
       REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY,
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
-      CONVERT_API_TOKEN: process.env.CONVERT_API_TOKEN
+      CONVERT_API_TOKEN: process.env.CONVERT_API_TOKEN,
+      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
     },
   },
 });

@@ -14,7 +14,9 @@
           <p class="text-lg text-gray-600">Drag and drop a PDF file here, or click to select</p>
           <p class="text-sm text-gray-500 mt-2">Supports: PDF</p>
         </div>
-
+        <div class="mb-6 flex justify-center">
+          <div ref="recaptchaContainer"></div>
+        </div>
         <div v-if="selectedFile" class="mb-6">
           <div class="flex items-center justify-between bg-blue-50 p-4 rounded-lg">
             <div class="flex items-center">
@@ -24,7 +26,7 @@
             <button
               @click="convertFile"
               class="bg-blue-500 text-white lg:px-6 px-4 py-2 rounded-full hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-              :disabled="isConverting">
+              :disabled="isConverting || !selectedFile || !recaptchaVerified">
               <span v-if="!isConverting">Convert</span>
               <span v-else class="flex items-center">
                 <LoaderIcon class="animate-spin mr-2 h-5 w-5" />
@@ -40,7 +42,9 @@
               <DOCX class="lg:h-6 h-14 lg:w-6 w-14 text-green-500 mr-2" />
               <span class="text-gray-700 text-sm">{{ convertedFile.name }}</span>
             </div>
-            <button @click="downloadFile" class="bg-green-500 text-white lg:px-6 px-4 py-2 rounded-full hover:bg-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Download</button>
+            <button @click="downloadFile" class="bg-green-500 text-white lg:px-6 px-4 py-2 rounded-full hover:bg-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+              Download
+            </button>
           </div>
         </div>
       </div>
@@ -61,6 +65,8 @@ const fileInput = ref<HTMLInputElement | null>(null);
 const selectedFile = ref<File | null>(null);
 const convertedFile = ref<File | null>(null);
 const isConverting = ref(false);
+const recaptchaVerified = ref(false);
+const recaptchaContainer = ref<HTMLDivElement | null>(null);
 
 const handleFileSelect = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -76,7 +82,7 @@ const handleFileDrop = (event: DragEvent) => {
 };
 
 const convertFile = async () => {
-  if (!selectedFile.value) return;
+  if (!selectedFile.value || !recaptchaVerified.value) return;
 
   isConverting.value = true;
   try {
@@ -110,4 +116,33 @@ const downloadFile = () => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+const onRecaptchaVerified = () => {
+  recaptchaVerified.value = true;
+};
+
+const resetRecaptcha = () => {
+  if (window.grecaptcha) {
+    window.grecaptcha.reset();
+  }
+  recaptchaVerified.value = false;
+};
+
+onMounted(() => {
+  // Initialize reCAPTCHA
+  if (window.grecaptcha) {
+    window.grecaptcha.render(recaptchaContainer.value, {
+      sitekey: config.public.RECAPTCHA_SITE_KEY,
+      callback: onRecaptchaVerified,
+      "expired-callback": resetRecaptcha,
+    });
+  }
+});
+</script>
+
+<script lang="ts">
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 </script>

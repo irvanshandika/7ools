@@ -28,10 +28,14 @@
           <p class="text-xs text-gray-500 mt-1">Required to open the Word document.</p>
         </div>
 
+        <div class="mb-6 flex justify-center">
+          <div ref="recaptchaContainer"></div>
+        </div>
+
         <button
           @click="protectFile"
           class="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-md hover:from-blue-600 hover:to-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-          :disabled="isProtecting || !selectedFile">
+          :disabled="isProtecting || !selectedFile || !recaptchaVerified">
           <span v-if="!isProtecting">Secure Document</span>
           <span v-else class="flex items-center justify-center">
             <LoaderIcon class="animate-spin mr-2 h-5 w-5" />
@@ -58,6 +62,8 @@ import { ref } from "vue";
 import ConvertApi from "convertapi-js";
 import { useRuntimeConfig } from "#app";
 import { UploadCloudIcon, FileIcon, LoaderIcon, LockIcon } from "lucide-vue-next";
+const recaptchaVerified = ref(false);
+const recaptchaContainer = ref<HTMLDivElement | null>(null);
 
 const config = useRuntimeConfig();
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -80,7 +86,7 @@ const handleFileDrop = (event: DragEvent) => {
 };
 
 const protectFile = async () => {
-  if (!selectedFile.value) return;
+  if (!selectedFile.value || !recaptchaVerified.value) return;
 
   isProtecting.value = true;
   try {
@@ -115,4 +121,33 @@ const downloadFile = () => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+const onRecaptchaVerified = () => {
+  recaptchaVerified.value = true;
+};
+
+const resetRecaptcha = () => {
+  if (window.grecaptcha) {
+    window.grecaptcha.reset();
+  }
+  recaptchaVerified.value = false;
+};
+
+onMounted(() => {
+  // Initialize reCAPTCHA
+  if (window.grecaptcha) {
+    window.grecaptcha.render(recaptchaContainer.value, {
+      sitekey: config.public.RECAPTCHA_SITE_KEY,
+      callback: onRecaptchaVerified,
+      "expired-callback": resetRecaptcha,
+    });
+  }
+});
+</script>
+
+<script lang="ts">
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 </script>

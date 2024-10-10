@@ -36,6 +36,11 @@
           <p class="text-sm text-gray-500 mt-2">Supports: JPG, JPEG, PNG, WebP</p>
         </div>
 
+        <!-- reCAPTCHA container -->
+        <div class="mb-6 flex justify-center">
+          <div ref="recaptchaContainer"></div>
+        </div>
+
         <div v-if="selectedFile" class="mb-6">
           <div class="flex items-center bg-blue-50 p-4 rounded-lg">
             <ImageIcon class="h-6 w-6 text-blue-500 mr-2" />
@@ -46,7 +51,7 @@
         <button
           @click="convertImage"
           class="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-md hover:from-blue-600 hover:to-green-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-          :disabled="isConverting || !selectedFile">
+          :disabled="isConverting || !selectedFile || !recaptchaVerified">
           <span v-if="!isConverting">Convert Image</span>
           <span v-else class="flex items-center justify-center">
             <LoaderIcon class="animate-spin mr-2 h-5 w-5" />
@@ -78,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import ConvertApi from "convertapi-js";
 import { useRuntimeConfig } from "#app";
 import { UploadCloudIcon, ImageIcon, LoaderIcon } from "lucide-vue-next";
@@ -91,6 +96,8 @@ const isConverting = ref(false);
 const inputFormat = ref("jpg");
 const outputFormat = ref("png");
 const showModal = ref(false);
+const recaptchaVerified = ref(false);
+const recaptchaContainer = ref<HTMLDivElement | null>(null);
 
 const handleFileSelect = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -122,7 +129,7 @@ const isValidFormat = (file: File): boolean => {
 };
 
 const convertImage = async () => {
-  if (!selectedFile.value) return;
+  if (!selectedFile.value || !recaptchaVerified.value) return;
 
   isConverting.value = true;
   try {
@@ -156,4 +163,34 @@ const downloadFile = () => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
+
+const onRecaptchaVerified = () => {
+  recaptchaVerified.value = true;
+};
+
+const resetRecaptcha = () => {
+  if (window.grecaptcha) {
+    window.grecaptcha.reset();
+  }
+  recaptchaVerified.value = false;
+};
+
+onMounted(() => {
+  // Initialize reCAPTCHA
+  if (window.grecaptcha) {
+    window.grecaptcha.render(recaptchaContainer.value, {
+      sitekey: config.public.RECAPTCHA_SITE_KEY,
+      callback: onRecaptchaVerified,
+      'expired-callback': resetRecaptcha
+    });
+  }
+});
+</script>
+
+<script lang="ts">
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 </script>

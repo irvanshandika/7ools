@@ -1,6 +1,7 @@
 <script setup>
 import PDF from "./icons/PDF.vue";
 import DOCX from "./icons/DOCX.vue";
+import Image from "./icons/Image.vue";
 </script>
 <template>
   <div class="hs-dropdown [--strategy:static] sm:[--strategy:absolute] [--adaptive:none] relative">
@@ -36,7 +37,7 @@ import DOCX from "./icons/DOCX.vue";
           DOCX to PDF
         </a>
         <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" href="/convert/images">
-          <DOCX class="size-6" />
+          <Image class="size-6" />
           Convert Images
         </a>
       </div>

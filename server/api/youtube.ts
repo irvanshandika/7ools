@@ -1,27 +1,57 @@
-import { $fetch } from "ofetch";
+import { defineEventHandler, readBody } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
-  const url = query.url as string;
-
-  if (!url) {
-    throw createError({
-      statusCode: 400,
-      message: "URL parameter is required",
-    });
-  }
+  const body = await readBody(event)
+  const apiUrl = 'https://mr-apis.com/api/downloader/ytbv'
+  
+  console.log('Sending request to API with body:', body)
 
   try {
-    const response = await $fetch("https://mr-apis.com/api/downloader/ytbv", {
-      method: "GET",
-      params: { url },
-    });
-    return response;
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+
+    console.log('API Response Status:', response.status)
+    console.log('API Response Headers:', Object.fromEntries(response.headers.entries()))
+
+    const responseText = await response.text()
+    console.log('Raw API response:', responseText)
+
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (parseError) {
+      console.error('Failed to parse JSON:', parseError)
+      return { 
+        status: 'error', 
+        message: 'Invalid JSON response from API',
+        rawResponse: responseText,
+        responseStatus: response.status,
+        responseHeaders: Object.fromEntries(response.headers.entries())
+      }
+    }
+
+    if (!response.ok) {
+      return {
+        status: 'error',
+        message: data.message || `API responded with status ${response.status}`,
+        data: data,
+        responseStatus: response.status,
+        responseHeaders: Object.fromEntries(response.headers.entries())
+      }
+    }
+
+    return data
   } catch (error) {
-    console.error("Error fetching YouTube data:", error);
-    throw createError({
-      statusCode: 500,
-      message: "Failed to fetch video information",
-    });
+    console.error('Error in youtube-proxy:', error)
+    return { 
+      status: 'error', 
+      message: error instanceof Error ? error.message : 'An unknown error occurred',
+      details: error instanceof Error ? error.stack : undefined
+    }
   }
-});
+})
