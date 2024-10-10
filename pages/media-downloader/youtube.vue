@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Navbar from "~/src/components/Navbar.vue";
 import Layout from "~/src/Layout.vue";
-import YoutubeDownloader from "~/src/sections/Media/YoutubeDownloader.vue";
+// import YoutubeDownloader from "~/src/sections/Media/YoutubeDownloader.vue";
+import Maintenance from "~/src/maintenance.vue";
 import Footer from "~/src/components/Footer.vue";
 
 useSeoMeta({
@@ -13,7 +14,8 @@ useSeoMeta({
   <Layout>
     <Navbar />
     <div>
-      <YoutubeDownloader />
+      <!-- <YoutubeDownloader /> -->
+      <Maintenance />
     </div>
     <Footer />
   </Layout>
