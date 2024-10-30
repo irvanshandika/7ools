@@ -19,10 +19,11 @@
     "markdown-it": "^14.1.0",
     "nuxt": "^3.13.2",
     "ofetch": "^1.4.0",
-    "openai": "^4.67.1",
+    "openai": "^4.67.3",
     "preline": "^2.5.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",

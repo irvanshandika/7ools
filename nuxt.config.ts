@@ -42,6 +42,10 @@ export default defineNuxtConfig({
       GEMINI_API_KEY: process.env.GEMINI_API_KEY,
       CONVERT_API_TOKEN: process.env.CONVERT_API_TOKEN,
       RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
+      openaiApiKey: process.env.OPENAI_API_KEY,
     },
+  },
+  build: {
+    transpile: ["openai"],
   },
 });

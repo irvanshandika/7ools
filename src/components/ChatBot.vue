@@ -37,11 +37,11 @@
 
     <!-- Input form -->
     <form @submit.prevent="sendMessage" class="bg-gray-200 p-4">
-      <div class="flex items-center bg-white rounded-full">
-        <input v-model="userInput" type="text" placeholder="Type a message" class="flex-1 py-2 px-4 rounded-full focus:outline-none" />
-        <button type="submit" class="bg-green-500 text-white rounded-full p-2 mx-1 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="w-6 h-6 text-white transition-colors duration-300 ease-in-out" viewBox="0 0 32 32">
-            <path fill="currentColor" d="M27.71 4.29a1 1 0 0 0-1.05-.23l-22 8a1 1 0 0 0 0 1.87l8.59 3.43L19.59 11L21 12.41l-6.37 6.37l3.44 8.59A1 1 0 0 0 19 28a1 1 0 0 0 .92-.66l8-22a1 1 0 0 0-.21-1.05" />
+      <div class="flex items-center">
+        <input v-model="userInput" @keyup.enter="sendMessage" type="text" placeholder="Type a message" class="flex-1 border rounded-full py-2 px-4 mr-2 focus:outline-none focus:border-green-500" />
+        <button type="submit" class="bg-green-500 text-white rounded-full p-2 hover:bg-green-600 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
           </svg>
         </button>
       </div>
@@ -65,7 +65,7 @@ export default defineComponent({
     const API_KEY = useRuntimeConfig().public.GEMINI_API_KEY;
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-pro-exp-0827",
+      model: "gemini-1.5-flash-8b-exp-0924",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -78,6 +78,7 @@ export default defineComponent({
       history: [],
       generationConfig: {
         maxOutputTokens: 9999999,
+        temperature: 1,
       },
     });
 
